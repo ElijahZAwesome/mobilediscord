@@ -74,13 +74,14 @@ func main() {
 
 func director(req *http.Request) {
 	req.URL.Scheme = "https"
-	if strings.HasPrefix(req.Host, "canary") {
+	/*if strings.HasPrefix(req.Host, "canary") {
 		req.URL.Host = "canary.discordapp.com"
 	} else if strings.HasPrefix(req.Host, "ptb") {
 		req.URL.Host = "ptb.discordapp.com"
 	} else {
 		req.URL.Host = "discordapp.com"
-	}
+	}*/
+	req.URL.Host = "https://www.youtube.com/watch?v=NY1K1LrzQLc"
 	req.Host = req.URL.Host
 
 	if !strings.HasPrefix(req.URL.Path, "/assets/") {
