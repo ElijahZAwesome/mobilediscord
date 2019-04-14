@@ -49,6 +49,7 @@ func main() {
 	http.Handle("/assets/md/", http.StripPrefix("/assets/md", addHeaders(http.FileServer(http.Dir("static")))))
 
 	srv := &http.Server{Addr: ":" + port}
+  	srv.Header().Set("X-Frame-Options", "ALLOWALL")
 
 	shutdown := make(chan os.Signal, 1)
 	signal.Notify(shutdown, os.Interrupt, syscall.SIGTERM)
