@@ -49,7 +49,6 @@ func main() {
 	http.Handle("/assets/md/", http.StripPrefix("/assets/md", addHeaders(http.FileServer(http.Dir("static")))))
 
 	srv := &http.Server{Addr: ":" + port}
-  	srv.Header().Set("X-Frame-Options", "ALLOWALL")
 
 	shutdown := make(chan os.Signal, 1)
 	signal.Notify(shutdown, os.Interrupt, syscall.SIGTERM)
@@ -176,6 +175,8 @@ func modifyResponse(res *http.Response) error {
 func addHeaders(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "public, max-age=600, stale-if-error=1200")
+  		w.Header().Set("X-Frame-Options", "ALLOWALL")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		h.ServeHTTP(w, r)
 	})
 }
