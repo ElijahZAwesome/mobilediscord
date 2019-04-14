@@ -81,7 +81,7 @@ func director(req *http.Request) {
 	} else {
 		req.URL.Host = "discordapp.com"
 	}*/
-	req.URL.Host = "https://www.youtube.com/watch?v=NY1K1LrzQLc"
+	req.URL.Host = "canary.discordapp.com"
 	req.Host = req.URL.Host
 
 	if !strings.HasPrefix(req.URL.Path, "/assets/") {
